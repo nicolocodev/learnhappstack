@@ -9,11 +9,11 @@ module Console (execute, executeInLoop) where
     , RequestType(..)
     )
 
-  execute :: Context -> ServerPart -> String
+  execute :: Context -> ServerPart -> IO ()
   execute inputContext serverpart =
     case serverpart inputContext of
-      Just ctxt -> show (response ctxt)
-      Nothing -> "Error"
+      Just ctxt -> putStrLn $ show (response ctxt)
+      Nothing -> print "Error"
 
   parseRequest :: String -> Request
   parseRequest input =
@@ -37,6 +37,5 @@ module Console (execute, executeInLoop) where
           do
             let rqst = parseRequest input
             let ctxt = inputContext {request = rqst}
-            let rslt = execute ctxt serverpart
-            putStrLn rslt
+            execute ctxt serverpart
             executeInLoop inputContext serverpart
