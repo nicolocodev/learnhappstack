@@ -1,4 +1,4 @@
-module MyHttp (RequestType (..), Request(..), Response(..), Context(..), WebPart) where
+module MyHttp (RequestType (..), Request(..), Response(..), Context(..), ServerPart) where
 
 data RequestType = Get | Post
 
@@ -21,4 +21,4 @@ data Context = Context
   , response :: Response
   }
 
-type WebPart = Context -> Maybe Context
+type ServerPart = Context -> Maybe Context

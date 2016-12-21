@@ -1,8 +1,8 @@
 module Successful  (ok) where
 
-  import MyHttp(Context(..), Response(..), WebPart)
+  import MyHttp(Context(..), Response(..), ServerPart)
 
-  ok :: String -> WebPart
+  ok :: String -> ServerPart
   ok reqContent context =
     Just context {
       response = Response {

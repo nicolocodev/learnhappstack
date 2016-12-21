@@ -1,9 +1,9 @@
 module Console (execute) where
 
-  import MyHttp (Context(..), WebPart)
+  import MyHttp (Context(..), ServerPart)
 
-  execute :: Context -> WebPart -> String
-  execute inputContext webpart =
-    case webpart inputContext of
+  execute :: Context -> ServerPart -> String
+  execute inputContext serverpart =
+    case serverpart inputContext of
       Just ctxt -> show (response ctxt)
       Nothing -> "Error"

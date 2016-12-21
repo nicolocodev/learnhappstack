@@ -4,14 +4,14 @@ module Console (execute, executeInLoop) where
 
   import MyHttp (
       Context(..)
-    , WebPart
+    , ServerPart
     , Request(..)
     , RequestType(..)
     )
 
-  execute :: Context -> WebPart -> String
-  execute inputContext webpart =
-    case webpart inputContext of
+  execute :: Context -> ServerPart -> String
+  execute inputContext serverpart =
+    case serverpart inputContext of
       Just ctxt -> show (response ctxt)
       Nothing -> "Error"
 
@@ -26,8 +26,8 @@ module Console (execute, executeInLoop) where
       rawType = head parts
       reqRoute = head $ tail parts
 
-  executeInLoop :: Context -> WebPart -> IO()
-  executeInLoop inputContext webpart =
+  executeInLoop :: Context -> ServerPart -> IO()
+  executeInLoop inputContext serverpart =
     do
       putStrLn "Enter Input Route: "
       input <- getLine
@@ -37,6 +37,6 @@ module Console (execute, executeInLoop) where
           do
             let rqst = parseRequest input
             let ctxt = inputContext {request = rqst}
-            let rslt = execute ctxt webpart
+            let rslt = execute ctxt serverpart
             putStrLn rslt
-            executeInLoop inputContext webpart
+            executeInLoop inputContext serverpart
