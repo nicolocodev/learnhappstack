@@ -1,0 +1,5 @@
+## Adding Filter ServerParts
+
+Until now we're responding with the same response to all "requests" but, in real live applications, we want to filter based on, at least, the request path. In this example the F# Applied Book introduce some functions such as `GET`, `POST` and `Path`. I think that in Happstack the `GET` and `POST` functions are implemented on `simpleHTTP` but, for this translation, I'll implement the functions explicitly, à la Suave.IO.
+
+At the end of this section the F# book introduce a new filter, `choose`, in order to handle multiple routes, that is, choose the first match from a WebParts collection. I noticed the same pattern in Happstack but using de [`mplus`](https://www.haskell.org/hoogle/?hoogle=mplus). But that requires that ServerPart be a higher order type, so, by no, I'm using the same choose function.
